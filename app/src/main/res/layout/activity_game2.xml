@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameActivity">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"
+        android:text="ooo"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -23,8 +26,10 @@
             android:id="@+id/b1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textSize="0sp"
             android:background="@android:color/transparent"
-            android:text="x"
+            android:text="1"
+            android:onClick="pressBtn"
             android:textAlignment="center"
             android:textColor="@color/black"/>
         <View
@@ -35,9 +40,10 @@
             android:id="@+id/b2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
+            android:textSize="0sp"
+            android:onClick="pressBtn"
             android:background="@android:color/transparent"
-            android:text="x"
+            android:text="2"
             android:textAlignment="center"
             android:textColor="@color/black" />
         <View
@@ -48,9 +54,11 @@
         <Button
             android:id="@+id/b3"
             android:layout_width="wrap_content"
+            android:textSize="0sp"
             android:layout_height="match_parent"
+            android:onClick="pressBtn"
             android:background="@android:color/transparent"
-            android:text="x"
+            android:text="3"
             android:textAlignment="center"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -69,11 +77,12 @@
             android:id="@+id/b4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textSize="0sp"
             android:textAlignment="center"
+            android:onClick="pressBtn"
             android:textColor="@color/black"
             android:background="@android:color/transparent"
-
-            android:text="x"/>
+            android:text="4"/>
         <View
             android:layout_width="4dp"
             android:layout_height="80dp"
@@ -84,10 +93,12 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textAlignment="center"
+            android:textSize="0sp"
+            android:onClick="pressBtn"
             android:textColor="@color/black"
             android:background="@android:color/transparent"
 
-            android:text="x"/>
+            android:text="5"/>
         <View
             android:layout_width="4dp"
             android:layout_height="80dp"
@@ -97,11 +108,13 @@
             android:id="@+id/b6"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textSize="0sp"
+            android:onClick="pressBtn"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:background="@android:color/transparent"
 
-            android:text="x"/>
+            android:text="6"/>
     </LinearLayout>
 
         <View
@@ -118,11 +131,13 @@
             android:id="@+id/b7"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textSize="0sp"
             android:textAlignment="center"
             android:textColor="@color/black"
+            android:onClick="pressBtn"
             android:background="@android:color/transparent"
 
-            android:text="x"/>
+            android:text="7"/>
 
         <View
             android:layout_width="4dp"
@@ -132,12 +147,14 @@
         <Button
             android:id="@+id/b8"
             android:layout_width="wrap_content"
+            android:textSize="0sp"
             android:layout_height="match_parent"
             android:textAlignment="center"
+            android:onClick="pressBtn"
             android:textColor="@color/black"
             android:background="@android:color/transparent"
 
-            android:text="x"/>
+            android:text="8"/>
         <View
             android:layout_width="4dp"
             android:layout_height="80dp"
@@ -145,12 +162,14 @@
         <Button
             android:id="@+id/b9"
             android:layout_width="wrap_content"
+            android:textSize="0sp"
             android:layout_height="match_parent"
+            android:onClick="pressBtn"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:background="@android:color/transparent"
 
-            android:text="x"/>
+            android:text="9"/>
     </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

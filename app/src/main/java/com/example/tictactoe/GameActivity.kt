@@ -7,13 +7,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import org.w3c.dom.Text
+import java.util.*
 
 
 class GameActivity : AppCompatActivity() {
-    var winConditions=arrayOf("123","456","789","147","258","369","159","357")
+    var winConditions=arrayOf("1 2 3","4 5 6","7 8 9","1 4 7","2 5 8","3 6 9","1 5 9","3 5 7")
+    var states= arrayOf("X","O")
     var index=0
-    var xPressed=arrayOf<String>()
-    var oPressed=arrayOf<String>()
+    private var xPressed=arrayOf<String>()
+    private var oPressed=arrayOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,38 +23,36 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun pressBtn(view: View) {
-        var text=findViewById<TextView>(R.id.text)
         var btn = view as Button
         var temp:String
-        if(index%2 == 0) {
+        if(index%2 == 0 && (btn.text.toString() !in states)) {
+            index++
             temp=btn.text.toString()
             btn.textSize= 20F
-            btn.text="X"
-            xPressed.plus(temp)
-//            Log.d("Value",xPressed[0])
+            btn.text=states[0]
+            xPressed=xPressed.plus(temp)
             if(checkWon(xPressed)){
-                text.text="X Won"
+
             }
-        }else{
+        }else if((btn.text.toString() !in states)){
+            index++
             temp=btn.text.toString()
             btn.textSize= 20F
-            btn.text="O"
-            oPressed.plus(temp)
+            btn.text=states[1]
+            oPressed=oPressed.plus(temp)
             if(checkWon(oPressed)){
-                text.text="O Won"
+
             }
         }
-        index++
+
     }
 
     private fun checkWon(arr:Array<String>):Boolean{
-         var anoFun: (String) -> Boolean = {arr.contains(it)}
         for (i in winConditions){
-            if(i.split("").all(anoFun)){
+            if(i.split(" ").all{arr.contains(it)}){
                 return true
             }
         }
         return false
     }
-
 }

@@ -20,7 +20,6 @@ import java.util.*
 
 class GameActivity : AppCompatActivity() {
 //    private lateinit var appDb : AppDataBase
-    var sound:Boolean=true
     private lateinit var media:MediaPlayer
     private var matchNum=0;
     var winConditions=arrayOf("1 2 3","4 5 6","7 8 9","1 4 7","2 5 8","3 6 9","1 5 9","3 5 7")
@@ -31,7 +30,6 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 //        appDb=AppDataBase.getDataBase(this)
-        sound= intent.extras?.getBoolean("sound") == true
         super.onCreate(savedInstanceState )
         setContentView(R.layout.activity_game2)
     }
@@ -40,7 +38,7 @@ class GameActivity : AppCompatActivity() {
         var stats:String
         var btn = view as Button
         var temp:String
-        sound()
+        btnClickSound()
         if(index%2 == 0 && (btn.text.toString() !in states)) {
             index++
             temp=btn.text.toString()
@@ -97,8 +95,8 @@ class GameActivity : AppCompatActivity() {
 //        return db
 //    }
 //
-    private fun sound(){
-    if (!sound){
+    private fun btnClickSound(){
+    if (!SingletonClass.getSoundStatus()){
         return
     }
         if(!this::media.isInitialized){
@@ -128,14 +126,7 @@ class GameActivity : AppCompatActivity() {
             dialog,which -> restartActivity(this)
         }
         builder.setNegativeButton("No"){
-            dialog,which ->
-            run {
-                var i = Intent(applicationContext, MainActivity::class.java)
-                var b=Bundle()
-                b.putBoolean("sound",sound)
-                i.putExtras(b)
-                startActivity(i)
-            }
+            dialog,which -> startActivity(Intent(applicationContext, MainActivity::class.java))
         }
         val alertDialog = builder.create()
         alertDialog.show()
@@ -149,6 +140,4 @@ class GameActivity : AppCompatActivity() {
             activity.startActivity(activity.intent)
         }
     }
-
-
 }

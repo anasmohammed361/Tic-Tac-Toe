@@ -7,21 +7,20 @@ import android.media.MediaPlayer
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
+import android.widget.Toast
+import com.example.tictactoe.database.AppDataBase
+import com.example.tictactoe.database.DataBase
+import com.example.tictactoe.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
-import java.util.*
 
 
 class GameActivity : AppCompatActivity() {
-//    private lateinit var appDb : AppDataBase
+    private lateinit var appDb : AppDataBase
     private lateinit var media:MediaPlayer
-    private var matchNum=0;
     var winConditions=arrayOf("1 2 3","4 5 6","7 8 9","1 4 7","2 5 8","3 6 9","1 5 9","3 5 7")
     var states= arrayOf("X","O")
     var index=0
@@ -29,7 +28,7 @@ class GameActivity : AppCompatActivity() {
     private var oPressed=arrayOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        appDb=AppDataBase.getDataBase(this)
+        appDb=AppDataBase.getDataBase(this)
         super.onCreate(savedInstanceState )
         setContentView(R.layout.activity_game2)
     }
@@ -47,7 +46,7 @@ class GameActivity : AppCompatActivity() {
             xPressed=xPressed.plus(temp)
             stats=checkWon(xPressed);
             if(stats.isNotEmpty()){
-//                writeDataToDb("X",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats)
+                writeDataToDb("X",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats)
                 showDialog("X has won. ")
             }
         }else if((btn.text.toString() !in states)){
@@ -58,8 +57,8 @@ class GameActivity : AppCompatActivity() {
             oPressed=oPressed.plus(temp)
             stats = checkWon(oPressed)
             if(stats.isNotEmpty()){
+                writeDataToDb("O",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats)
                 showDialog("O has won. ")
-//                    writeDataToDb("O",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats)
                 }
 
         }
@@ -77,24 +76,17 @@ class GameActivity : AppCompatActivity() {
         return ""
     }
 
-//    private fun writeDataToDb(winner:String,match_stats:String,winning_row:String){
-//        val db= DataBase(
-//            null,matchNum,winner,match_stats,winning_row
-//        )
-//        matchNum++
-//        GlobalScope.launch(Dispatchers.IO){
-//            appDb.dbInstance().insert(db)
-//        }
-//    }
-//    private fun readDb(match_id:Int):DataBase{
-//        lateinit var db : DataBase
-//
-//        GlobalScope.launch {
-//            db = appDb.dbInstance().findByMatchNumber(match_id)
-//        }
-//        return db
-//    }
-//
+    private fun writeDataToDb(winner:String,match_stats:String,winning_row:String){
+        val dbData= DataBase(
+            null,winner,match_stats,winning_row
+        )
+        GlobalScope.launch(Dispatchers.IO){
+            appDb.dbInstance().insert(dbData)
+        }
+        Toast.makeText(applicationContext,"Writted to Db",Toast.LENGTH_LONG).show()
+    }
+
+
     private fun btnClickSound(){
     if (!SingletonClass.getSoundStatus()){
         return

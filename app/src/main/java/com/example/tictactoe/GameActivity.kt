@@ -2,6 +2,7 @@ package com.example.tictactoe
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Build
@@ -10,9 +11,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import android.content.SharedPreferences
 import com.example.tictactoe.database.AppDataBase
 import com.example.tictactoe.database.DataBase
-import com.example.tictactoe.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 class GameActivity : AppCompatActivity() {
     private lateinit var appDb : AppDataBase
     private lateinit var media:MediaPlayer
+    private val sound:Boolean = SingletonClass.getSoundStatus()
     var winConditions=arrayOf("1 2 3","4 5 6","7 8 9","1 4 7","2 5 8","3 6 9","1 5 9","3 5 7")
     var states= arrayOf("X","O")
     var index=0
@@ -78,17 +80,17 @@ class GameActivity : AppCompatActivity() {
 
     private fun writeDataToDb(winner:String,match_stats:String,winning_row:String){
         val dbData= DataBase(
-            null,winner,match_stats,winning_row
+            0,winner,match_stats,winning_row
         )
         GlobalScope.launch(Dispatchers.IO){
             appDb.dbInstance().insert(dbData)
         }
-        Toast.makeText(applicationContext,"Writted to Db",Toast.LENGTH_LONG).show()
+        Toast.makeText(applicationContext,"Written to Db",Toast.LENGTH_LONG).show()
     }
 
 
     private fun btnClickSound(){
-    if (!SingletonClass.getSoundStatus()){
+    if (!sound){
         return
     }
         if(!this::media.isInitialized){

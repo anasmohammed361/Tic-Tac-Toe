@@ -8,20 +8,35 @@
     android:gravity="center"
     tools:context=".SettingsActivity">
 
+
     <Switch
         android:id="@+id/switch_button"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_below="@+id/bg_music"
+        android:layout_marginBottom="20dp"
         android:text="Sound"
-        android:textSize="25dp"
-        android:switchMinWidth="60dp"
+        android:textSize="25sp"
         android:thumbTint="@color/purple_200"
-        android:trackTint="#716969"/>
+        android:trackTint="#716969" />
+
+    <Switch
+        android:id="@+id/bg_music"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/switch_button"
+        android:textSize="25sp"
+        android:thumbTint="@color/purple_200"
+        android:trackTint="#716969"
+        android:text="Music" />
 
     <Button
+        android:id="@+id/theme_btn"
         android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:text="Apply"
-        android:id="@+id/apply_btn"
-        android:layout_marginTop="200dp"/>
+        android:layout_above="@+id/switch_button"
+        android:textSize="20sp"
+        android:text="Theme" />
+
 </LinearLayout>

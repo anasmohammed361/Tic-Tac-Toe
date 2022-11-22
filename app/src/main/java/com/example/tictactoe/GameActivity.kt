@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.example.tictactoe.database.AppDataBase
 import com.example.tictactoe.database.DataBase
 import kotlinx.coroutines.Dispatchers
@@ -23,8 +24,7 @@ class GameActivity : AppCompatActivity() {
     private var completed:Boolean = false
     private lateinit var appDb : AppDataBase
     private lateinit var media:MediaPlayer
-    private val pref: SharedPreferences = getDefaultSharedPreferences(applicationContext)
-    private val sound = pref.getBoolean("sound",false)
+
     var winConditions=arrayOf("1 2 3","4 5 6","7 8 9","1 4 7","2 5 8","3 6 9","1 5 9","3 5 7")
     var states= arrayOf("X","O")
     var index=0
@@ -38,8 +38,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun pressBtn(view: View) {
-        getDefaultSharedPreferences(applicationContext).getString("player1","PPP1")
-            ?.let { Log.d("Name", it) }
         if(completed){
             return
         }
@@ -56,7 +54,10 @@ class GameActivity : AppCompatActivity() {
             stats=checkWon(xPressed);
             if(stats.isNotEmpty()){
                 completed=true
-                writeDataToDb("X",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats)
+                val player=getDefaultSharedPreferences(applicationContext).getString("player1","Player-1")+"|"+
+                        getDefaultSharedPreferences(applicationContext).getString("player2","Player-2")
+                Log.d("Won",player)
+                writeDataToDb("X",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats,player)
                 showDialog("X has won. ")
             }
         }else if((btn.text.toString() !in states)){
@@ -68,7 +69,10 @@ class GameActivity : AppCompatActivity() {
             stats = checkWon(oPressed)
             if(stats.isNotEmpty()){
                 completed=true
-                writeDataToDb("O",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats)
+                val player= getDefaultSharedPreferences(applicationContext).getString("player1","Player-1")+"|"+
+                        getDefaultSharedPreferences(applicationContext).getString("player2","Player-2")
+                Log.d("Won",player)
+                writeDataToDb("O",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats,player)
                 showDialog("O has won. ")
                 }
 
@@ -88,9 +92,9 @@ class GameActivity : AppCompatActivity() {
         return ""
     }
 
-    private fun writeDataToDb(winner:String,match_stats:String,winning_row:String){
+    private fun writeDataToDb(winner:String,match_stats:String,winning_row:String,players:String){
         val dbData= DataBase(
-            null,winner,match_stats,winning_row,
+            null,winner,match_stats,winning_row,players
         )
         GlobalScope.launch(Dispatchers.IO){
             appDb.dbInstance().insert(dbData)
@@ -100,7 +104,7 @@ class GameActivity : AppCompatActivity() {
 
 
     private fun btnClickSound(){
-    if (!sound){
+    if (!getDefaultSharedPreferences(applicationContext).getBoolean("sound",true)){
         return
     }
         if(!this::media.isInitialized){
@@ -140,7 +144,6 @@ class GameActivity : AppCompatActivity() {
     private fun restartActivity(activity:Activity){
         if(Build.VERSION.SDK_INT>=11){
             activity.recreate()
-            activity.finish()
         }else{
             activity.finish()
             activity.startActivity(activity.intent)

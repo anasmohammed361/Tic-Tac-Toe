@@ -13,6 +13,6 @@ data class DataBase(
     val match_stats:String,
     @ColumnInfo(name = "winning_row")
     val win_stat:String,
-//    @ColumnInfo(name ="participants")
-//    val participants:String
+    @ColumnInfo(name = "participants")
+    val participants:String
 )

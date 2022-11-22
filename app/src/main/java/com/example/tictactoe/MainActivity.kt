@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
         btnQuit.setOnClickListener {
             finish()
+            exitProcess(0)
         }
         btnHistory.setOnClickListener{
             var intent =Intent(applicationContext,HistoryActivity::class.java)

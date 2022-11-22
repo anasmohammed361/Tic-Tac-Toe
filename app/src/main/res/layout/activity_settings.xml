@@ -30,13 +30,44 @@
         android:trackTint="#716969"
         android:text="Music" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        android:hint="Player1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/player_1_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        android:hint="Player2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/player_2_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/theme_btn"
         android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/switch_button"
         android:textSize="20sp"
         android:text="Theme" />
+
+    <Button
+        android:id="@+id/apply_btn"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Apply" />
 
 </LinearLayout>

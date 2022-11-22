@@ -7,8 +7,8 @@ interface DBInterface {
     @Query("SELECT * FROM logs")
     fun getAll():List<DataBase>
 
-//    @Query("SELECT * FROM Logs WHERE match_no LIKE :match LIMIT 1")
-//    suspend fun findByMatchNumber(match:Int?): DataBase
+    @Query("SELECT * FROM Logs WHERE :match LIKE :match LIMIT 1")
+    suspend fun findByMatchNumber(match:Int?): DataBase
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(db:DataBase)

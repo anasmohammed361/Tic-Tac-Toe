@@ -2,16 +2,16 @@ package com.example.tictactoe
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager.getDefaultSharedPreferences
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import android.content.SharedPreferences
 import com.example.tictactoe.database.AppDataBase
 import com.example.tictactoe.database.DataBase
 import kotlinx.coroutines.Dispatchers
@@ -20,9 +20,11 @@ import kotlinx.coroutines.launch
 
 
 class GameActivity : AppCompatActivity() {
+    private var completed:Boolean = false
     private lateinit var appDb : AppDataBase
     private lateinit var media:MediaPlayer
-    private val sound:Boolean = SingletonClass.getSoundStatus()
+    private val pref: SharedPreferences = getDefaultSharedPreferences(applicationContext)
+    private val sound = pref.getBoolean("sound",false)
     var winConditions=arrayOf("1 2 3","4 5 6","7 8 9","1 4 7","2 5 8","3 6 9","1 5 9","3 5 7")
     var states= arrayOf("X","O")
     var index=0
@@ -36,6 +38,11 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun pressBtn(view: View) {
+        getDefaultSharedPreferences(applicationContext).getString("player1","PPP1")
+            ?.let { Log.d("Name", it) }
+        if(completed){
+            return
+        }
         var stats:String
         var btn = view as Button
         var temp:String
@@ -48,6 +55,7 @@ class GameActivity : AppCompatActivity() {
             xPressed=xPressed.plus(temp)
             stats=checkWon(xPressed);
             if(stats.isNotEmpty()){
+                completed=true
                 writeDataToDb("X",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats)
                 showDialog("X has won. ")
             }
@@ -59,12 +67,14 @@ class GameActivity : AppCompatActivity() {
             oPressed=oPressed.plus(temp)
             stats = checkWon(oPressed)
             if(stats.isNotEmpty()){
+                completed=true
                 writeDataToDb("O",xPressed.joinToString("-")+"|"+oPressed.joinToString("-"),stats)
                 showDialog("O has won. ")
                 }
 
         }
         if(xPressed.size + oPressed.size >=9){
+            completed=true
             showDialog("Oops! It is a Tie...")
         }
     }
@@ -80,7 +90,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun writeDataToDb(winner:String,match_stats:String,winning_row:String){
         val dbData= DataBase(
-            0,winner,match_stats,winning_row
+            null,winner,match_stats,winning_row,
         )
         GlobalScope.launch(Dispatchers.IO){
             appDb.dbInstance().insert(dbData)
@@ -120,7 +130,8 @@ class GameActivity : AppCompatActivity() {
             dialog,which -> restartActivity(this)
         }
         builder.setNegativeButton("No"){
-            dialog,which -> startActivity(Intent(applicationContext, MainActivity::class.java))
+//            dialog,which -> startActivity(Intent(applicationContext, MainActivity::class.java))
+            dialog,which -> finish()
         }
         val alertDialog = builder.create()
         alertDialog.show()
@@ -129,6 +140,7 @@ class GameActivity : AppCompatActivity() {
     private fun restartActivity(activity:Activity){
         if(Build.VERSION.SDK_INT>=11){
             activity.recreate()
+            activity.finish()
         }else{
             activity.finish()
             activity.startActivity(activity.intent)

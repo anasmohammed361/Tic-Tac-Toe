@@ -6,147 +6,234 @@
     android:layout_height="match_parent"
     tools:context=".HistoryTemplate">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/top_parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:layout_above="@+id/mid_parent">
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/txt_1"
+            android:background="@color/black" />
+        <TextView
+            android:id="@+id/txt_1"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/txt_2"
+            android:layout_marginStart="-92dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/txt_2" />
+
+        <TextView
+            android:id="@+id/txt_2"
+            android:layout_width="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"/>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/txt_3"
+            android:background="@color/black" />
+        <TextView
+            android:id="@+id/txt_3"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/txt_2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="74dp"
+            android:layout_marginRight="-91dp"
+            android:layout_toEndOf="@+id/txt_2" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="250dp"
+        android:layout_below="@+id/top_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_height="4dp"
+        android:background="@color/black"/>
+
+    <RelativeLayout
+        android:id="@+id/mid_parent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/txt_4"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/txt_5"
+            android:layout_marginStart="-92dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/txt_5" />
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/txt_4"
+            android:background="@color/black" />
+        <TextView
+            android:id="@+id/txt_5"
+            android:layout_width="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"/>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/txt_6"
+            android:background="@color/black" />
+        <TextView
+            android:id="@+id/txt_6"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/txt_5"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="74dp"
+            android:layout_marginRight="-91dp"
+            android:layout_toEndOf="@+id/txt_5" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="250dp"
+        android:layout_above="@+id/bottom_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_height="4dp"
+        android:background="@color/black"/>
+
+    <RelativeLayout
+        android:id="@+id/bottom_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_below="@+id/mid_parent">
+
+        <TextView
+            android:id="@+id/txt_7"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/txt_8"
+            android:layout_marginStart="-92dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/txt_8" />
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/txt_7"
+            android:background="@color/black" />
+        <TextView
+            android:id="@+id/txt_8"
+            android:layout_width="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"/>
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/txt_9"
+            android:background="@color/black" />
+        <TextView
+            android:id="@+id/txt_9"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/txt_8"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="74dp"
+            android:layout_marginRight="-91dp"
+            android:layout_toEndOf="@+id/txt_8" />
+
+
+
+    </RelativeLayout>
+
+
+<!--    lines for winning rows   -->
+
+    <View
+        android:id="@+id/row_1"
+        android:layout_width="250dp"
+        android:layout_height="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="37dp"
+        android:visibility="invisible"
+        android:layout_above="@+id/mid_parent"
+        android:background="@color/teal_200"/>
+
+    <View
+        android:id="@+id/row_2"
+        android:layout_width="250dp"
+        android:visibility="invisible"
+        android:layout_height="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="37dp"
+        android:layout_below="@+id/top_parent"
+        android:background="@color/teal_200"/>
+
+    <View
+        android:id="@+id/row_3"
+        android:layout_width="250dp"
+        android:layout_height="4dp"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="37dp"
+        android:layout_below="@+id/mid_parent"
+        android:background="@color/teal_200"/>
+
+<!--    lines for winning  columns  -->
+    <View
+        android:id="@+id/column_1"
+        android:layout_width="4dp"
+        android:layout_height="240dp"
+        android:visibility="invisible"
+        android:layout_alignRight="@+id/column_2"
+        android:layout_marginHorizontal="85dp"
+        android:layout_centerVertical="true"
+        android:background="@color/teal_200" />
+
+    <View
+        android:id="@+id/column_2"
+        android:layout_width="4dp"
+        android:visibility="invisible"
+        android:layout_height="240dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="407dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/teal_200" />
+
+    <View
+        android:id="@+id/column_3"
+        android:layout_width="4dp"
+        android:layout_height="240dp"
+        android:layout_alignLeft="@+id/column_2"
+        android:layout_marginHorizontal="85dp"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:background="@color/teal_200" />
+
+<!--    lines for winning diagonal-->
+    <View
+        android:visibility="invisible"
+        android:id="@+id/diagonal_left"
+        android:layout_width="4dp"
+        android:layout_height="300dp"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:rotation="-45"
+        android:background="@color/teal_200"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:minHeight="80dp">
+    <View
+        android:visibility="invisible"
+        android:id="@+id/diagonal_right"
+        android:layout_width="4dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:rotation="45"
+        android:background="@color/teal_200"/>
 
-            <Button
-                android:id="@+id/b1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                
-                android:textAlignment="center"
-                android:textColor="@color/black"/>
-            <View
-                android:layout_width="4dp"
-                android:layout_height="80dp"
-                android:background="@color/black"/>
-            <Button
-                android:id="@+id/b2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                
-                android:background="@android:color/transparent"
 
-                android:textAlignment="center"
-                android:textColor="@color/black" />
-            <View
-                android:layout_width="4dp"
-                android:layout_height="80dp"
-                android:background="@color/black"/>
 
-            <Button
-                android:id="@+id/b3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                
-                android:background="@android:color/transparent"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@color/black"/>
-
-        <LinearLayout
-            android:id="@+id/middle_row"
-            android:minHeight="80dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/b4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
-                
-                android:textColor="@color/black"
-                android:background="@android:color/transparent" />
-            <View
-                android:layout_width="4dp"
-                android:layout_height="80dp"
-                android:background="@color/black"/>
-
-            <Button
-                android:id="@+id/b5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
-                
-                android:textColor="@color/black"
-                android:background="@android:color/transparent" />
-            <View
-                android:layout_width="4dp"
-                android:layout_height="80dp"
-                android:background="@color/black"/>
-
-            <Button
-                android:id="@+id/b6"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:background="@android:color/transparent" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@color/black"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:minHeight="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/b7"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                
-                android:background="@android:color/transparent" />
-
-            <View
-                android:layout_width="4dp"
-                android:layout_height="80dp"
-                android:background="@color/black"/>
-
-            <Button
-                android:id="@+id/b8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
-                
-                android:textColor="@color/black"
-                android:background="@android:color/transparent" />
-            <View
-                android:layout_width="4dp"
-                android:layout_height="80dp"
-                android:background="@color/black"/>
-            <Button
-                android:id="@+id/b9"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:background="@android:color/transparent"/>
-        </LinearLayout>
-    </LinearLayout>
 
 
 </RelativeLayout>

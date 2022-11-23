@@ -19,6 +19,9 @@ class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
         holder.txt0.text=currentItem.players
         holder.txt1.text=currentItem.player_x
         holder.txt2.text=currentItem.player_y
+        holder.img.setOnClickListener {
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -37,4 +40,6 @@ class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
         val txt1:TextView =itemView.findViewById(R.id.text_1)
         val txt2:TextView =itemView.findViewById(R.id.text_2)
     }
+
+  
 }

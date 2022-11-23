@@ -3,6 +3,7 @@ package com.example.tictactoe
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,36 +32,43 @@ class HistoryActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        GlobalScope.launch {
-            data = appDb.dbInstance().getAll()
-            Log.d("Size", data.size.toString())
-            Log.d("Firstval",data[0].winner)
-            imageId= arrayOf()
-            text0Arr = arrayOf()
-            text1Arr = arrayOf()
-            text2Arr = arrayOf()
-            newArrayList= arrayListOf()
-            var participantsArray: List<String>
-            val len = data.size
-            for (i in data) {
-                participantsArray = i.participants.split("|")
-                imageId.plus(if (i.winner == "X") R.drawable.x_img else R.drawable.o_img)
-                text0Arr.plus(i.participants.replace("|", "vs"))
-                text1Arr.plus(participantsArray[0] + "- X ||" + participantsArray[1] + "- O")
-                text2Arr.plus("Winner - " + if (i.winner == "X") participantsArray[0] else participantsArray[1])
-            }
-            for(i in text0Arr.indices){
-                val stat = Stats(imageId[i],text0Arr[i],text1Arr[i],text2Arr[i])
-                newArrayList.add(stat)
-            }
-            newRecyclerView.apply {
-                layoutManager = LinearLayoutManager(this@HistoryActivity)
-                adapter = MyAdapter().apply{
-                    setData(newArrayList.toList())
+        try {
+            GlobalScope.launch {
+                data = appDb.dbInstance().getAll()
+                Log.d("Size", data.size.toString())
+                Log.d("Firstval", data[0].winner)
+                imageId = arrayOf()
+                text0Arr = arrayOf()
+                text1Arr = arrayOf()
+                text2Arr = arrayOf()
+                newArrayList = arrayListOf()
+                var participantsArray: List<String>
+                val len = data.size
+                for (i in data) {
+                    participantsArray = i.participants.split("|")
+                    imageId =
+                        imageId.plus(if (i.winner == "X") R.drawable.x_img else R.drawable.o_img)
+                    text0Arr = text0Arr.plus(i.participants.replace("|", " vs "))
+                    text1Arr =
+                        text1Arr.plus(participantsArray[0] + "- X || " + participantsArray[1] + "- O")
+                    text2Arr =
+                        text2Arr.plus("Winner - " + if (i.winner == "X") participantsArray[0] else participantsArray[1])
+                }
+                for (i in text0Arr.indices) {
+                    val stat = Stats(imageId[i], text0Arr[i], text1Arr[i], text2Arr[i])
+                    newArrayList.add(stat)
+                }
+                newRecyclerView.apply {
+                    layoutManager = LinearLayoutManager(this@HistoryActivity)
+                    adapter = MyAdapter().apply {
+                        setData(newArrayList.toList())
+                    }
                 }
             }
-    }
-
+        }catch(e:Throwable){
+            Toast.makeText(applicationContext,"You have to play a game to enable history",Toast.LENGTH_LONG).show()
+            finish()
+        }
     }
 
 

@@ -20,15 +20,15 @@
         android:thumbTint="@color/purple_200"
         android:trackTint="#716969" />
 
-    <Switch
-        android:id="@+id/bg_music"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/switch_button"
-        android:textSize="25sp"
-        android:thumbTint="@color/purple_200"
-        android:trackTint="#716969"
-        android:text="Music" />
+<!--    <Switch-->
+<!--        android:id="@+id/bg_music"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_below="@+id/switch_button"-->
+<!--        android:textSize="25sp"-->
+<!--        android:thumbTint="@color/purple_200"-->
+<!--        android:trackTint="#716969"-->
+<!--        android:text="Music" />-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="20dp"
@@ -54,13 +54,13 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/theme_btn"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Theme" />
+<!--    <Button-->
+<!--        android:id="@+id/theme_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="20sp"-->
+<!--        android:text="Theme" />-->
 
     <Button
         android:id="@+id/apply_btn"

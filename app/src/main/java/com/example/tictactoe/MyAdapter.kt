@@ -7,14 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 
-class MyAdapter(private val statsList:ArrayList<Stats>):
-    RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
-
+class MyAdapter(): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+    private var statsList = mutableListOf<Stats>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
         return MyViewHolder(itemView)
     }
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = statsList[position]
         holder.img.setImageResource(currentItem.winningImage)
@@ -25,6 +23,12 @@ class MyAdapter(private val statsList:ArrayList<Stats>):
 
     override fun getItemCount(): Int {
         return statsList.size
+    }
+    fun setData(list:List<Stats>){
+        statsList.apply{
+            clear()
+            addAll(list)
+        }
     }
 
     class MyViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView){

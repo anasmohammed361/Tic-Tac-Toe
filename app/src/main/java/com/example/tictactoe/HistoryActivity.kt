@@ -1,5 +1,6 @@
 package com.example.tictactoe
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class HistoryActivity : AppCompatActivity() {
+class HistoryActivity : AppCompatActivity() ,MyAdapter.RowClickListener{
     private lateinit var appDb : AppDataBase
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var data: List<DataBase>
@@ -55,12 +56,12 @@ class HistoryActivity : AppCompatActivity() {
                         text2Arr.plus("Winner - " + if (i.winner == "X") participantsArray[0] else participantsArray[1])
                 }
                 for (i in text0Arr.indices) {
-                    val stat = Stats(imageId[i], text0Arr[i], text1Arr[i], text2Arr[i])
+                    val stat = Stats(imageId[i], text0Arr[i], text1Arr[i], text2Arr[i],data[i])
                     newArrayList.add(stat)
                 }
                 newRecyclerView.apply {
                     layoutManager = LinearLayoutManager(this@HistoryActivity)
-                    adapter = MyAdapter().apply {
+                    adapter = MyAdapter(this@HistoryActivity).apply {
                         setData(newArrayList.toList())
                     }
                 }
@@ -72,7 +73,12 @@ class HistoryActivity : AppCompatActivity() {
     }
 
 
-
+    override fun onItemClickListener(user: Stats) {
+        val intent = Intent(applicationContext,HistoryTemplate::class.java)
+        intent.putExtra("matchStats",user.dbData.match_stats)
+        intent.putExtra("winStat",user.dbData.win_stat)
+        startActivity(intent)
+    }
 
 
 

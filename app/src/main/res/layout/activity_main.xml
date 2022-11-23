@@ -36,7 +36,8 @@
         android:background="@null"
         android:minWidth="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/settings" />
+        android:src="@drawable/settings"
+       />
 
     <ImageButton
         android:id="@+id/history_btn"

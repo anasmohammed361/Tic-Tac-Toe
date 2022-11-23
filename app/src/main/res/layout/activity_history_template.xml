@@ -19,6 +19,8 @@
         <TextView
             android:id="@+id/txt_1"
             android:layout_width="80dp"
+            android:textSize="20sp"
+            android:gravity="center"
             android:layout_height="match_parent"
             android:layout_alignStart="@+id/txt_2"
             android:layout_marginStart="-92dp"
@@ -28,6 +30,8 @@
         <TextView
             android:id="@+id/txt_2"
             android:layout_width="80dp"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:layout_height="match_parent"/>
         <View
@@ -39,6 +43,8 @@
             android:id="@+id/txt_3"
             android:layout_width="80dp"
             android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_alignRight="@+id/txt_2"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="0dp"
@@ -68,6 +74,8 @@
             android:layout_height="match_parent"
             android:layout_alignStart="@+id/txt_5"
             android:layout_marginStart="-92dp"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_marginEnd="0dp"
             android:layout_toStartOf="@+id/txt_5" />
         <View
@@ -79,6 +87,8 @@
             android:id="@+id/txt_5"
             android:layout_width="80dp"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_height="match_parent"/>
         <View
             android:layout_width="4dp"
@@ -89,6 +99,8 @@
             android:id="@+id/txt_6"
             android:layout_width="80dp"
             android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_alignRight="@+id/txt_5"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="0dp"
@@ -116,6 +128,8 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_alignStart="@+id/txt_8"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_marginStart="-92dp"
             android:layout_marginEnd="0dp"
             android:layout_toStartOf="@+id/txt_8" />
@@ -128,6 +142,8 @@
             android:id="@+id/txt_8"
             android:layout_width="80dp"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_height="match_parent"/>
         <View
             android:layout_width="4dp"
@@ -138,6 +154,8 @@
             android:id="@+id/txt_9"
             android:layout_width="80dp"
             android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_alignRight="@+id/txt_8"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="0dp"

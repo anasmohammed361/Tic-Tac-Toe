@@ -99,7 +99,6 @@ class GameActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO){
             appDb.dbInstance().insert(dbData)
         }
-        Toast.makeText(applicationContext,"Written to Db",Toast.LENGTH_LONG).show()
     }
 
 

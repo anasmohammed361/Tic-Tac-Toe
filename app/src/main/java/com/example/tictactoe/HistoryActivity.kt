@@ -29,10 +29,6 @@ class HistoryActivity : AppCompatActivity() ,MyAdapter.RowClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
         newRecyclerView = findViewById(R.id.recycler_view)
-        }
-
-    override fun onResume() {
-        super.onResume()
         try {
             GlobalScope.launch {
                 data = appDb.dbInstance().getAll()
@@ -70,7 +66,8 @@ class HistoryActivity : AppCompatActivity() ,MyAdapter.RowClickListener{
             Toast.makeText(applicationContext,"You have to play a game to enable history",Toast.LENGTH_LONG).show()
             finish()
         }
-    }
+        }
+
 
 
     override fun onItemClickListener(user: Stats) {
